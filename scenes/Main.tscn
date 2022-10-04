@@ -1,0 +1,146 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://assets/Textures/TexturesCom_Grass0184_1_seamless_S.jpg" type="Texture" id=1]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/overheadRoundColored.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadStartPositions.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadStart.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadStraightLong.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadRampLongWall.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadStraightBridgeMid.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadCornerBridgeLarger.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadStraightLongBump.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/treeLarge.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/tentRoofDouble.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/pitsGarage.tscn" type="PackedScene" id=14]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/pitsOfficeRoof.tscn" type="PackedScene" id=15]
+
+[sub_resource type="PlaneShape" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 1 )
+uv1_scale = Vector3( 500, 500, 500 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 2 )
+size = Vector2( 1000, 1000 )
+subdivide_width = 10
+subdivide_depth = 10
+
+[node name="Main" type="Spatial"]
+
+[node name="Ground" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Ground"]
+shape = SubResource( 1 )
+
+[node name="MeshInstance" type="MeshInstance" parent="Ground"]
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.792854, 0.252913, -0.554453, 0.0361739, 0.88868, 0.457098, 0.608337, -0.382469, 0.695445, 0, 12.6577, 5.13889 )
+light_energy = 0.14
+shadow_enabled = true
+
+[node name="Track" type="Node" parent="."]
+
+[node name="1roadStartPositions" parent="Track" instance=ExtResource( 5 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.15, 16.047 )
+
+[node name="2roadStart" parent="Track" instance=ExtResource( 6 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -1.278, 0.15, -3.416 )
+
+[node name="3roadStraightLong" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0.15, -22.9739 )
+
+[node name="4roadRampLongWall" parent="Track" instance=ExtResource( 8 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -3.49717, -0.0681835, -48.9461 )
+
+[node name="5roadStraightBridgeMid" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -3.6197, -0.081075, -68.8791 )
+
+[node name="6roadStraightBridgeMid2" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -3.6197, -0.081075, -78.6625 )
+
+[node name="7roadCornerBridgeLarger" parent="Track" instance=ExtResource( 10 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -3.63544, 3.8516, -88.605 )
+
+[node name="8roadCornerBridgeLarger2" parent="Track" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-06, 0, -10, 0, 10, 0, 10, 0, -1.62921e-06, 26.2084, 3.8516, -118.596 )
+
+[node name="9roadStraightBridgeMid3" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 46.2289, -0.081075, -78.6625 )
+
+[node name="10roadStraightBridgeMid2" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 46.2329, -0.081075, -68.8791 )
+
+[node name="11roadRampLongWall2" parent="Track" instance=ExtResource( 8 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 46.1476, -0.0681835, -48.9461 )
+
+[node name="12roadStraightLong2" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 49.5973, 0.15, -22.9739 )
+
+[node name="13roadStraightLongBump" parent="Track" instance=ExtResource( 11 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 49.5324, 0, -4.91523 )
+
+[node name="14roadStraightLong3" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 49.5973, 0.15, 13.1707 )
+
+[node name="15roadStraightLong4" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 49.5973, 0.15, 31.4788 )
+
+[node name="15roadStraightLong5" parent="Track" instance=ExtResource( 7 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 0.00915337, 0.148754, 35.5787 )
+
+[node name="16roadCornerBridgeLarger3" parent="Track" instance=ExtResource( 10 )]
+transform = Transform( -10, 0, -3.25841e-06, 0, 10, 0, 3.25841e-06, 0, -10, 56.0914, -1.01456, 24.8305 )
+
+[node name="17roadCornerBridgeLarger2" parent="Track" instance=ExtResource( 10 )]
+transform = Transform( -1.62921e-06, 0, 10, 0, 10, 0, -10, 0, -1.62921e-06, 26.2234, -1.015, 54.8023 )
+
+[node name="Scenery" type="Node" parent="."]
+
+[node name="treeLarge" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 62.4778, 3.8147e-06, -40.6319 )
+
+[node name="treeLarge2" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 18.8987, 0, -91.5849 )
+
+[node name="treeLarge3" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -3.19173, 0, -30.7695 )
+
+[node name="treeLarge4" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, -2.8797, 0, 24.3817 )
+
+[node name="treeLarge5" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 45.4368, 0, 3.86444 )
+
+[node name="treeLarge7" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 48.2001, 0, -30.7187 )
+
+[node name="treeLarge6" parent="Scenery" instance=ExtResource( 12 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 41.1263, 0, 40.981 )
+
+[node name="pitsGarage" parent="Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.230362, 0, -9.99735, 0, 10, 0, 9.99735, 0, 0.230362, -0.906293, 0, -11.8163 )
+
+[node name="pitsGarage2" parent="Scenery" instance=ExtResource( 14 )]
+transform = Transform( 0.0197227, 0, 9.99998, 0, 10, 0, -9.99998, 0, 0.0197227, 3.73804, 0, 5.75904 )
+
+[node name="pitsOfficeRoof" parent="Scenery" instance=ExtResource( 15 )]
+transform = Transform( 0.257234, 0, -9.99669, 0, 10, 0, 9.99669, 0, 0.257234, -0.061245, 0, 0 )
+
+[node name="pitsOfficeRoof3" parent="Scenery" instance=ExtResource( 15 )]
+transform = Transform( 0.257234, 0, -9.99669, 0, 10, 0, 9.99669, 0, 0.257234, -0.061245, 0, 11.2206 )
+
+[node name="pitsOfficeRoof2" parent="Scenery" instance=ExtResource( 15 )]
+transform = Transform( -0.0104751, 0, 9.99999, 0, 10, 0, -9.99999, 0, -0.0104751, 3.41103, -1.90735e-06, -10.8828 )
+
+[node name="tentRoofDouble" parent="Scenery" instance=ExtResource( 13 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 24.6229, 0, 72.3047 )
+
+[node name="overheadRoundColored" parent="Scenery" instance=ExtResource( 3 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 18.0319, 0, -37.1821 )
+
+[node name="overheadRoundColored2" parent="Scenery" instance=ExtResource( 3 )]
+transform = Transform( 10, 0, 0, 0, 10, 0, 0, 0, 10, 18.0319, 0, -92.6134 )

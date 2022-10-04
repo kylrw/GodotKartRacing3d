@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+albedo_color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[node name="roadColumn" type="Spatial"]
+
+[node name="CSGCylinder" type="CSGCylinder" parent="."]
+sides = 12
+material = SubResource( 1 )

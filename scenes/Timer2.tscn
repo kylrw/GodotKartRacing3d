@@ -1,0 +1,58 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/Label2.gd" type="Script" id=1]
+[ext_resource path="res://assets/SF Sports Night NS.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/Timer2.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[node name="TimerOverlay" type="VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lap2" type="Label" parent="Label"]
+margin_top = 29.0
+margin_right = 40.0
+margin_bottom = 46.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0:0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Lap3" type="Label" parent="Label"]
+margin_top = 50.0
+margin_right = 40.0
+margin_bottom = 67.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+text = "0:0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+[connection signal="timeout" from="Timer" to="Label" method="_on_Timer_timeout"]

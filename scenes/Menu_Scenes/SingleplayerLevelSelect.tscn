@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/SF Sports Night.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/Textures/Mountain.PNG" type="Texture" id=2]
+[ext_resource path="res://assets/Textures/Beach.PNG" type="Texture" id=3]
+[ext_resource path="res://scenes/Menu_Scenes/Button.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Menu_Scenes/LevelSelect.gd" type="Script" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 70
+font_data = ExtResource( 1 )
+
+[node name="Singleplayer" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BeachPicture" type="TextureRect" parent="."]
+margin_left = 35.0
+margin_top = 92.0
+margin_right = 1099.0
+margin_bottom = 981.0
+rect_scale = Vector2( 0.867, 1.008 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MountainPicture" type="TextureRect" parent="."]
+margin_left = 960.0
+margin_top = 92.0
+margin_right = 1848.0
+margin_bottom = 988.0
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterRow" type="HBoxContainer" parent="Menu"]
+margin_left = 598.0
+margin_top = 507.0
+margin_right = 1322.0
+margin_bottom = 572.0
+
+[node name="Beach" type="Button" parent="Menu/CenterRow"]
+margin_right = 360.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 360, 65 )
+script = ExtResource( 4 )
+scene_to_load = "res://scenes/Singleplayer_Scenes/Singleplayer1.tscn"
+
+[node name="Label" type="Label" parent="Menu/CenterRow/Beach"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 360, 0 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 5
+text = "Beach"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mountain" type="Button" parent="Menu/CenterRow"]
+margin_left = 364.0
+margin_right = 724.0
+margin_bottom = 65.0
+rect_min_size = Vector2( 360, 65 )
+script = ExtResource( 4 )
+scene_to_load = "res://scenes/Singleplayer_Scenes/Singleplayer2.tscn"
+
+[node name="Label" type="Label" parent="Menu/CenterRow/Mountain"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 360, 0 )
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_offset_x = 2
+custom_constants/shadow_offset_y = 5
+text = "Mountain"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

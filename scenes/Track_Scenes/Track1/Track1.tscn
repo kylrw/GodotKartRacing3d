@@ -1,0 +1,245 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://scenes/Nature_Scenes/PineTree_Snow_4.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Nature_Scenes/PineTree_Snow_1.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/Textures/Rock035_1K-JPG/Rock035_1K_Color.jpg" type="Texture" id=3]
+[ext_resource path="res://assets/Textures/Rock035_1K-JPG/Rock035_1K_Normal.jpg" type="Texture" id=4]
+[ext_resource path="res://scenes/Nature_Scenes/PineTree_Snow_5.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Track_Scenes/Track1/Terrain/data.hterrain" type="Resource" id=6]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=7]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=8]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/overheadRoundColored.tscn" type="PackedScene" id=9]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 3.82024, 0, 26.3373, 12.4156, 0, 3.88597, -12.4156, 0, -3.88597, -33.9966, 0, 26.4333, 0.165852, 0, 7.12249, -0.165852, 0, -7.12249, -48.5667, 0, 10.7905, -3.87044, 0, 4.82136, 3.87044, 0, -4.82136, -43.0823, 0, -7.88275, -4.72681, 0, 0.141098, 4.72681, 0, -0.141098, -31.4789, 0.442761, -14.9588, -3.24423, 0, -4.26463, 3.24423, 0, 4.26463, -18.9713, 1.53626, -9.50666, -5.60654, 0, -6.00337, 5.60654, 0, 6.00337, -11.4755, 1.93348, 5.18385, -4.69298, 0.629292, 6.95607, 4.69298, -0.629292, -6.95607, 9.49509, 2.85887, 3.34277, 3.94199, 0.0134773, 5.19385, -3.94199, -0.0134773, -5.19385, 7.93398, 2.13349, -14.5221, 6.0276, 0, 2.0081, -6.0276, 0, -2.0081, -7.96134, 0.575783, -27.6686, 6.72132, 0, 2.78438, -6.72132, 0, -2.78438, -25.4288, 0, -29.7831, -2.80458, 0, 3.9537, 2.80458, 0, -3.9537, -28.1704, 0, -46.5373, -8.14313, 0, 0.219536, 8.14313, 0, -0.219536, -13.8532, 0, -53.239, -3.91967, 0, -4.09923, 3.91967, 0, 4.09923, 15.8474, 0, -34.8093, -1.87006, 0, -6.55702, 1.87006, 0, 6.55702, 30.7739, 0, -15.3135, -0.615942, 0, -5.38897, 0.615942, 0, 5.38897, 32.4493, 0, -1.45323, 0.372562, 0, -6.7981, -0.372562, 0, 6.7981, 40.2063, 1.41089, 15.5755, 6.42, 0, -0.564398, -6.42, 0, 0.564398, 30.0089, 1.3965, 21.8984, 0, 0, 0, 0, 0, 0, 3.82024, 0, 26.3373 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.396078, 0.262745, 0.129412, 1 )
+uv1_scale = Vector3( 0.1, 1, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.396078, 0.262745, 0.129412, 1 )
+metallic = 0.71
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 8 )
+mode = 0
+textures = [ [ ExtResource( 3 ) ], [ ExtResource( 4 ) ] ]
+
+[node name="Main" type="Spatial"]
+
+[node name="Sun" type="DirectionalLight" parent="."]
+transform = Transform( 0.792854, 0.252913, -0.554452, 0.0475807, 0.881348, 0.470065, 0.607551, -0.399074, 0.686747, -12.8704, 32.4569, 78.406 )
+light_energy = 3.41
+shadow_enabled = true
+
+[node name="Track" type="Spatial" parent="."]
+
+[node name="Path" type="Path" parent="Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0415812, 1.43051e-06, 0.093399 )
+curve = SubResource( 1 )
+
+[node name="Road" type="CSGPolygon" parent="Track/Path"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, -7, 0.1, 2, 0.1, 2, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+material = SubResource( 2 )
+
+[node name="Railing" type="CSGPolygon" parent="Track/Path"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7.1, 0, -7.1, 1, -7, 1, -7, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+material = SubResource( 3 )
+
+[node name="Barrier" type="CSGPolygon" parent="Track/Path"]
+visible = false
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, 2, 0, 2, 2, 8, 2, 8, -1, -8, -1, -8, 2, -7, 2 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+smooth_faces = true
+
+[node name="overheadRoundColored" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( -0.391361, 0, 4.99218, 0, 7, 0, -6.98905, 0, -0.279544, -3.85297, 0, 36.484 )
+
+[node name="overheadRoundColored2" parent="Track" instance=ExtResource( 9 )]
+transform = Transform( 0.301553, -1.17429e-07, 4.99536, -2.7259e-06, -7, -1.61796e-13, 6.9935, -2.72337e-06, -0.215395, -4.42679, 0, 23.4242 )
+
+[node name="Scenery" type="Spatial" parent="."]
+
+[node name="PineTree_Snow_1" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.439854, -0.820271, -1.87283, -0.406409, 2.77806, -0.636227, 1.90823, 0.780736, 0.296191, -2.17733, 1.53165, -29.2616 )
+
+[node name="PineTree_Snow_7" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 1.06027, -0.224109, -1.68923, -0.863745, 2.5003, -0.689568, 1.45938, 1.64265, 0.819138, -6.94999, 1.53165, -31.5945 )
+
+[node name="PineTree_Snow_4" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( -1.46282, -1.27885, -1.06456, -0.920072, 2.65384, -0.152625, 1.00678, 0.567154, -1.68625, 3.13437, 4.61188, -24.6493 )
+
+[node name="PineTree_Snow_5" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( -1.02787, -1.00613, -1.57911, -0.725305, 2.75717, -0.308662, 1.55481, 0.621053, -1.18792, 7.50471, 4.61188, -21.1928 )
+
+[node name="PineTree_Snow_11" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.794096, 0.906593, 1.73324, -0.725305, 2.75717, -0.308662, -1.68622, -0.759015, 0.949005, 7.95093, 2.84916, -30.1469 )
+
+[node name="PineTree_Snow_12" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.794096, 0.906593, 1.73324, -0.725305, 2.75717, -0.308662, -1.68622, -0.759015, 0.949005, 3.13972, 2.84916, -35.8454 )
+
+[node name="PineTree_Snow_13" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.794096, 0.906593, 1.73324, -0.725305, 2.75717, -0.308662, -1.68622, -0.759015, 0.949005, -1.80278, 2.84916, -40.3655 )
+
+[node name="PineTree_Snow_14" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.794096, 0.906593, 1.73324, -0.725305, 2.75717, -0.308662, -1.68622, -0.759015, 0.949005, 18.7865, 2.84916, -18.8026 )
+
+[node name="PineTree_Snow_15" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.794096, 0.906593, 1.73324, -0.835748, 2.70064, -0.24492, -1.6343, -0.940546, 0.967418, 15.5889, 0.899407, -26.6274 )
+
+[node name="PineTree_Snow_6" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( -1.63449, -1.3794, -0.69482, -0.938353, 2.64273, -0.124413, 0.66928, 0.336476, -1.8713, 14.3722, 4.61188, -10.945 )
+
+[node name="PineTree_Snow_2" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 0.998014, -1.30055, -2.65566, 0, 3.75474, -1.03432, 2.82913, 0.458786, 0.936822, -7.47557, 2.65533, -12.4468 )
+
+[node name="PineTree_Snow_3" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( -2.97289, -0.18497, -0.377702, 0, 3.75474, -1.03432, 0.402373, -1.36664, -2.79061, -12.2642, 2.05137, -18.8966 )
+
+[node name="PineTree_Snow_8" parent="Scenery" instance=ExtResource( 1 )]
+transform = Transform( -3.4679, 0, 1.99341, 0, 5, 0, -1.99341, 0, -3.4679, -24.231, 1.80936, -39.5849 )
+
+[node name="PineTree_Snow_9" parent="Scenery" instance=ExtResource( 1 )]
+transform = Transform( 4.95859, 0.00748684, -0.642127, 0.387478, 4.74952, 3.03062, 0.51208, -3.66634, 3.92467, -25.6098, 1.80936, -7.80524 )
+
+[node name="PineTree_Snow_10" parent="Scenery" instance=ExtResource( 1 )]
+transform = Transform( -4.00051, -2.19342, 2.5576, 0.387478, 5.5411, 3.03062, -2.97419, 3.6722, -3.04533, -19.9406, 1.80936, -33.4939 )
+
+[node name="PineTree_Snow_16" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 2.27497, 2.75002, 1.04974, -1.40733, 4.16573, -0.878767, -1.35791, 0.289915, 2.66942, 34.2439, 2.04596, 14.1111 )
+
+[node name="PineTree_Snow_22" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 3.42169, 3.10755, -0.00912571, -1.91087, 4.72378, -1.55923, -0.800378, 2.00723, 3.68358, 28.3441, 5.29713, 13.0063 )
+
+[node name="PineTree_Snow_17" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 2.81777, 1.71609, 0, -1.02965, 4.69628, 0, 0, 0, 3, 32.1686, 2.04597, 9.36952 )
+
+[node name="PineTree_Snow_18" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 2.67281, 2.27065, 0, -1.36239, 4.45468, 0, 0, 0, 3, 29.6211, 2.04597, 2.94138 )
+
+[node name="PineTree_Snow_19" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 3, 0, 0, 0, 4.42262, -1.39948, 0, 2.33247, 2.65357, 29.9657, 2.04597, 17.4928 )
+
+[node name="PineTree_Snow_20" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 3, 0, 0, 0, 4.81922, -0.799394, 0, 1.33232, 2.89153, 22.7993, 2.04597, 19.1458 )
+
+[node name="PineTree_Snow_21" parent="Scenery" instance=ExtResource( 5 )]
+transform = Transform( 2.90203, 1.26735, 0, -0.760413, 4.83671, 0, 0, 0, 3, 23.8855, 2.04597, -8.07226 )
+
+[node name="PineTree_Snow_23" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 73.0578, 1.9367, -6.38716 )
+
+[node name="PineTree_Snow_24" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 79.121, -0.831473, 2.35604 )
+
+[node name="PineTree_Snow_25" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 83.836, 1.9367, 14.5546 )
+
+[node name="PineTree_Snow_26" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 82.6096, 7.02865, 24.9158 )
+
+[node name="PineTree_Snow_27" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 76.9548, 2.69296, 42.5999 )
+
+[node name="PineTree_Snow_28" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 59.5369, 7.87015, 49.9291 )
+
+[node name="PineTree_Snow_29" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 42.7972, 7.87015, 54.7428 )
+
+[node name="PineTree_Snow_30" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 21.44, 7.87015, 62.6959 )
+
+[node name="PineTree_Snow_31" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -27.0003, 10.1336, 65.8426 )
+
+[node name="PineTree_Snow_32" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -43.5701, 11.6109, 65.5886 )
+
+[node name="PineTree_Snow_33" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -60.5327, 10.8784, 58.8153 )
+
+[node name="PineTree_Snow_34" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -74.6852, 11.6109, 31.5728 )
+
+[node name="PineTree_Snow_35" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -77.4697, 11.6109, 3.25952 )
+
+[node name="PineTree_Snow_36" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -72.8222, 11.0662, -24.313 )
+
+[node name="PineTree_Snow_37" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -68.1092, 8.56737, -47.5571 )
+
+[node name="PineTree_Snow_38" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -55.264, 10.814, -71.6446 )
+
+[node name="PineTree_Snow_39" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -40.4836, 10.9114, -83.0635 )
+
+[node name="PineTree_Snow_40" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -20.3205, 8.02173, -89.014 )
+
+[node name="PineTree_Snow_41" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 0.831151, 3.39057, -86.4023 )
+
+[node name="PineTree_Snow_42" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 16.8531, 3.96604, -79.7874 )
+
+[node name="PineTree_Snow_43" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 34.8821, -2.06471, -67.1559 )
+
+[node name="PineTree_Snow_44" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, 52.693, 3.49291, -51.977 )
+
+[node name="PineTree_Snow_45" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 8.9672, -2.5695, 3.87355, 2.32257, 11.6719, 0, -3.76762, 1.07959, 9.21931, 68.7296, 3.96604, -33.2459 )
+
+[node name="PineTree_Snow_46" parent="Scenery" instance=ExtResource( 2 )]
+transform = Transform( 8.9672, -2.5695, 3.87355, 2.32257, 11.6719, 0, -3.76762, 1.07959, 9.21931, 68.7296, 3.96604, -33.2459 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250 )
+script = ExtResource( 7 )
+ambient_wind = 0.272
+lod_scale = 3.077
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 6 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "LowPoly"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 4 )

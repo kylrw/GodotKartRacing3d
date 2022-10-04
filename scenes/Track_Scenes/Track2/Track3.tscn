@@ -1,0 +1,1013 @@
+[gd_scene load_steps=20 format=2]
+
+[ext_resource path="res://scenes/Track_Scenes/Track2/Terrain/data.hterrain" type="Resource" id=1]
+[ext_resource path="res://scenes/Track_Scenes/Track2/Track3.gd" type="Script" id=3]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/overheadRoundColored.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Nature_Scenes/Seaweed_Small1.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Nature_Scenes/PalmTree_2.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Nature_Scenes/PalmTree_1.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/Nature_Scenes/Willow_Dead_2.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/Nature_Scenes/PalmTree_3.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/Nature_Scenes/Willow_Dead_1.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Track_Scenes/RaceTrack/roadColumn.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Nature_Scenes/Willow_Dead_4.tscn" type="PackedScene" id=14]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=15]
+
+[sub_resource type="Curve3D" id=1]
+_data = {
+"points": PoolVector3Array( 0, 0, 0, 0, 0, 0, 17.1606, 0, 32.8034, 9.13492, 0, 1.6396, -9.13492, 0, -1.6396, -20.2096, 0, 31.2134, 3.92432, 0, 6.63719, -3.92432, 0, -6.63719, -37.7768, 0, 19.8533, -1.80247, 0, 9.63204, 1.80247, 0, -9.63204, -39.2061, 0, -5.04746, -11.5925, 0, 1.36383, 11.5925, 0, -1.36383, -21.4827, 2.77043, -24.5703, -1.77441, -0.982133, -7.68036, 1.77441, 0.982133, 7.68036, -2.13578, 6.407, -11.7988, 9.60564, -0.622127, -0.585478, -9.60564, 0.622127, 0.585478, -12.4233, 8.69683, 1.40777, 2.06237, 0.380499, 8.50431, -2.06237, -0.380499, -8.50431, -29.4998, 10.3103, -11.2091, -4.52727, 0.327935, 8.89039, 4.52727, -0.327935, -8.89039, -28.5227, 8.54999, -32.0176, -3.17216, 0.276824, 0.169182, 3.17216, -0.276824, -0.169182, -7.76241, 6.3238, -38.8682, -10.6825, 0.911499, -0.200012, 10.6825, -0.911499, 0.200012, 12.9754, 4.43851, -38.7651, -8.86198, 0.175627, -8.29153, 8.86198, -0.175627, 8.29153, 72.0089, -12.013, -31.1036, 10.3823, 0, -4.3653, -10.3823, 0, 4.3653, 64.5885, -10.1186, -10.3304, 15.7879, -2.52212, -3.4985, -15.7879, 2.52212, 3.4985, 31.0833, -5.95055, -21.6146, -10.2842, 1.5405, -3.65128, 10.2842, -1.5405, 3.65128, 29.2549, -7.60704, 9.99106, -0.374001, 0, -19.4066, 0.374001, 0, 19.4066, 66.3251, -12.8519, 16.7559, 0, 0, 0, 0, 0, 0, 18.2634, 0, 32.8035 ),
+"tilts": PoolRealArray( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 )
+}
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.27451, 0.27451, 0.27451, 1 )
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.509804, 0.509804, 0.509804, 1 )
+metallic = 1.0
+roughness = 0.0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 15 )
+mode = 0
+textures = [ [  ], [  ] ]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.223529, 0.286275, 0.521569, 0.858824 )
+metallic = 1.0
+roughness = 0.0
+refraction_enabled = true
+refraction_scale = 0.05
+refraction_texture_channel = 0
+proximity_fade_enable = true
+proximity_fade_distance = 1.0
+
+[sub_resource type="PlaneMesh" id=6]
+size = Vector2( 500, 500 )
+
+[node name="Spatial" type="Spatial"]
+script = ExtResource( 3 )
+
+[node name="Track" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 16.1987, 0, 12.9461 )
+
+[node name="Path" type="Path" parent="Track"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6309, 0, -10.7262 )
+curve = SubResource( 1 )
+
+[node name="Road" type="CSGPolygon" parent="Track/Path"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, -7, 0.5, 2, 0.5, 2, 0 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+smooth_faces = true
+material = SubResource( 2 )
+
+[node name="Barrier" type="CSGPolygon" parent="Track/Path"]
+visible = false
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, 2, 0, 2, 2, 8, 2, 8, -1, -13, 0, -13, 2, -7, 2 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+smooth_faces = true
+
+[node name="Railings" type="CSGPolygon" parent="Track/Path"]
+use_collision = true
+invert_faces = true
+polygon = PoolVector2Array( -7, 0, 2, 0, 2, 1, 2.1, 1, 2.1, -1, -7.1, 0, -7.1, 1, -7, 1 )
+mode = 2
+path_node = NodePath("..")
+path_interval = 1.0
+path_rotation = 2
+path_local = false
+path_continuous_u = false
+path_joined = true
+smooth_faces = true
+material = SubResource( 3 )
+
+[node name="HTerrain" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -250, 0, -250 )
+script = ExtResource( 4 )
+ambient_wind = 1.0
+lod_scale = 2.0
+map_scale = Vector3( 1, 1, 1 )
+_terrain_data = ExtResource( 1 )
+chunk_size = 64
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "LowPoly"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 4 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 1, 0, 0, 0, 0.766044, 0.642788, 0, -0.642788, 0.766044, -14.9927, 31.8559, 64.2391 )
+
+[node name="Scenery" type="Spatial" parent="."]
+
+[node name="Water" type="MeshInstance" parent="Scenery"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 51.0311, -0.01, 5.421 )
+material_override = SubResource( 5 )
+mesh = SubResource( 6 )
+material/0 = null
+
+[node name="AboveWater" type="Spatial" parent="Scenery"]
+
+[node name="Columns" type="Spatial" parent="Scenery/AboveWater"]
+
+[node name="roadColumn" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, -25.932, 4.22704, -13.2995 )
+
+[node name="roadColumn11" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, -0.768235, 1.95878, 0.0850067 )
+
+[node name="roadColumn12" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, -16.4252, 3.5074, 5.93249 )
+
+[node name="roadColumn2" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, -29.7931, 2.91477, -30.4311 )
+
+[node name="roadColumn3" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, -12.3279, 1.49031, -38.4225 )
+
+[node name="roadColumn4" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 18.184, -1.72876, -38.699 )
+
+[node name="roadColumn5" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 44.5607, -9.33189, -38.2702 )
+
+[node name="roadColumn6" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 58.0941, -15.3513, -8.45442 )
+
+[node name="roadColumn7" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 30.3071, -11.1628, -13.0021 )
+
+[node name="roadColumn8" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 53.2641, -16.4264, 6.78072 )
+
+[node name="roadColumn9" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 49.4905, -12.9722, 37.1556 )
+
+[node name="roadColumn10" parent="Scenery/AboveWater/Columns" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 12, 0, 0, 0, 1, 28.2359, -7.521, 38.5699 )
+
+[node name="Trees" type="Spatial" parent="Scenery/AboveWater"]
+
+[node name="PalmTree_8" parent="Scenery/AboveWater/Trees" instance=ExtResource( 11 )]
+transform = Transform( 5, 0, 0, 0, 6, 0, 0, 0, 5, -36.3812, -0.134596, -29.2804 )
+
+[node name="PalmTree_9" parent="Scenery/AboveWater/Trees" instance=ExtResource( 11 )]
+transform = Transform( 5, 0, 0, 0, 5.86236, -1.06481, 0, 1.27777, 4.8853, -29.2233, -0.134596, -38.8411 )
+
+[node name="PalmTree_10" parent="Scenery/AboveWater/Trees" instance=ExtResource( 11 )]
+transform = Transform( 4.63966, -1.62953, 1.27654, 1.62883, 5.54257, -1.00673, -0.905809, 1.62003, 4.72831, -42.2414, -0.134596, -21.3579 )
+
+[node name="PalmTree_1" parent="Scenery/AboveWater/Trees" instance=ExtResource( 9 )]
+transform = Transform( 3, 0, 0, 0, 4, 0, 0, 0, 3, -7.58282, 3.88044, -1.37078 )
+
+[node name="PalmTree_2" parent="Scenery/AboveWater/Trees" instance=ExtResource( 9 )]
+transform = Transform( 3, 0, 0, 0, 4, 0, 0, 0, 3, -6.39899, 2.21835, -14.7559 )
+
+[node name="PalmTree_3" parent="Scenery/AboveWater/Trees" instance=ExtResource( 8 )]
+transform = Transform( 3, 0, 0, 0, 4, 0, 0, 0, 3, -19.3642, 3.99534, -10.9765 )
+
+[node name="PalmTree_4" parent="Scenery/AboveWater/Trees" instance=ExtResource( 8 )]
+transform = Transform( 3, 0, 0, 0, 4, 0, 0, 0, 3, -0.613407, 0.36681, 28.7637 )
+
+[node name="PalmTree_5" parent="Scenery/AboveWater/Trees" instance=ExtResource( 8 )]
+transform = Transform( -2.96562, 0, 0.45285, 0, 4, 0, -0.45285, 0, -2.96562, -13.1651, 0.36681, 43.6877 )
+
+[node name="PalmTree_6" parent="Scenery/AboveWater/Trees" instance=ExtResource( 8 )]
+transform = Transform( 2.68749, 0, -1.3332, 0, 4, 0, 1.3332, 0, 2.68749, -18.2095, 0.36681, 29.2782 )
+
+[node name="PalmTree_7" parent="Scenery/AboveWater/Trees" instance=ExtResource( 8 )]
+transform = Transform( -2.89723, 0, -0.778481, 0, 4, 0, 0.778481, 0, -2.89723, -23.7592, 0.36681, 40.7292 )
+
+[node name="overheadRoundColored" parent="Scenery/AboveWater" instance=ExtResource( 5 )]
+transform = Transform( -1.30337e-06, 0, 5, 0, 8, 0, -8, 0, -8.14603e-07, -3.28197, -0.116883, 44.5834 )
+
+[node name="BelowWater" type="Spatial" parent="Scenery"]
+
+[node name="Plant_2" parent="Scenery/BelowWater" instance=ExtResource( 6 )]
+transform = Transform( 2.54439, 1.5746, -0.216205, -1.57988, 2.55021, -0.0197333, 0.173432, 0.130596, 2.99213, 39.1496, -11.4467, -28.08 )
+
+[node name="Plant_3" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350475, 0.0135212, -0.970572 )
+
+[node name="Plant_4" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494755, -0.19088, -2.14295 )
+
+[node name="Plant_5" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491958, 0.189801, -1.67976 )
+
+[node name="Plant_6" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_7" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_8" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722314, 0.278674, -2.55341 )
+
+[node name="Plant_9" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590883, 0.227967, -3.85197 )
+
+[node name="Plant_10" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926955, -0.357626, -3.85735 )
+
+[node name="Plant_11" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80729, -0.252813, -2.83486 )
+
+[node name="Plant_12" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86411, 0.0809546, 0.188371 )
+
+[node name="Plant_13" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09485, 0.177955, -0.752446 )
+
+[node name="Plant_14" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745664, 0.312674, 1.0814 )
+
+[node name="Plant_15" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92105, -0.105747, -1.33953 )
+
+[node name="Plant_18" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.2743, 0.828394, -0.376333 )
+
+[node name="Plant_19" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.71837, 0.626777, -1.53704 )
+
+[node name="Plant_20" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.64736, 1.14353, -1.08647 )
+
+[node name="Plant_21" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_22" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_23" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.80353, 1.34479, -1.95787 )
+
+[node name="Plant_24" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.60331, 1.37753, -3.2482 )
+
+[node name="Plant_25" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.218, 0.524546, -3.23791 )
+
+[node name="Plant_26" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.39809, 0.380909, -2.17086 )
+
+[node name="Plant_27" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.46928, 0.449075, 0.869673 )
+
+[node name="Plant_28" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.14893, 0.763183, -0.092473 )
+
+[node name="Plant_29" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.58094, 0.808931, 1.72806 )
+
+[node name="Plant_30" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.35244, 0.381181, -0.664712 )
+
+[node name="Plant_16" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179657, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.30233, 0.728989, 0.589458 )
+
+[node name="Plant_17" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.96609, 0.944645, -6.94398 )
+
+[node name="Plant_31" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.64668, 0.980693, -5.83383 )
+
+[node name="Plant_32" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.94269, 1.39817, -6.52728 )
+
+[node name="Plant_33" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_34" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_35" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 3.00463, 1.72457, -7.37219 )
+
+[node name="Plant_36" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.66535, 1.94197, -8.61466 )
+
+[node name="Plant_37" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.28267, 1.0855, -8.57704 )
+
+[node name="Plant_38" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.582722, 0.78255, -7.4591 )
+
+[node name="Plant_39" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.985132, 0.410846, -4.4667 )
+
+[node name="Plant_40" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.55844, 0.866183, -5.44154 )
+
+[node name="Plant_41" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.18648, 0.651597, -3.69152 )
+
+[node name="Plant_42" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.701365, 0.564642, -5.97283 )
+
+[node name="Plant_43" parent="Scenery/BelowWater/Plant_2" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.77893, 0.742888, -4.90142 )
+
+[node name="Plant_4" parent="Scenery/BelowWater" instance=ExtResource( 6 )]
+transform = Transform( 2.56961, 1.47829, -0.460194, -1.44951, 2.61035, 0.291538, 0.544081, -0.0273607, 2.95012, 38.2366, -10.8037, 2.07848 )
+
+[node name="Plant_3" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350475, 0.0135212, -0.970572 )
+
+[node name="Plant_4" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494755, -0.19088, -2.14295 )
+
+[node name="Plant_5" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491958, 0.189801, -1.67976 )
+
+[node name="Plant_6" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_7" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_8" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722314, 0.278674, -2.55341 )
+
+[node name="Plant_9" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590883, 0.227967, -3.85197 )
+
+[node name="Plant_10" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926955, -0.357626, -3.85735 )
+
+[node name="Plant_11" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80729, -0.252813, -2.83486 )
+
+[node name="Plant_12" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86411, 0.0809546, 0.188371 )
+
+[node name="Plant_13" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09485, 0.177955, -0.752446 )
+
+[node name="Plant_14" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745664, 0.312674, 1.0814 )
+
+[node name="Plant_15" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92105, -0.105747, -1.33953 )
+
+[node name="Plant_18" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.2743, 0.828394, -0.376333 )
+
+[node name="Plant_19" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.71837, 0.626777, -1.53704 )
+
+[node name="Plant_20" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.64736, 1.14353, -1.08647 )
+
+[node name="Plant_21" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_22" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_23" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.80353, 1.34479, -1.95787 )
+
+[node name="Plant_24" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.60331, 1.37753, -3.2482 )
+
+[node name="Plant_25" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.218, 0.524546, -3.23791 )
+
+[node name="Plant_26" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.39809, 0.380909, -2.17086 )
+
+[node name="Plant_27" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.46928, 0.449075, 0.869673 )
+
+[node name="Plant_28" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.14893, 0.763183, -0.092473 )
+
+[node name="Plant_29" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.58094, 0.808931, 1.72806 )
+
+[node name="Plant_30" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.35244, 0.381181, -0.664712 )
+
+[node name="Plant_16" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179657, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.30233, 0.728989, 0.589458 )
+
+[node name="Plant_17" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.96609, 0.944645, -6.94398 )
+
+[node name="Plant_31" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.64668, 0.980693, -5.83383 )
+
+[node name="Plant_32" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.94269, 1.39817, -6.52728 )
+
+[node name="Plant_33" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_34" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_35" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 3.00463, 1.72457, -7.37219 )
+
+[node name="Plant_36" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.66535, 1.94197, -8.61466 )
+
+[node name="Plant_37" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.28267, 1.0855, -8.57704 )
+
+[node name="Plant_38" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.582722, 0.78255, -7.4591 )
+
+[node name="Plant_39" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.985132, 0.410846, -4.4667 )
+
+[node name="Plant_40" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.55844, 0.866183, -5.44154 )
+
+[node name="Plant_41" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.18648, 0.651597, -3.69152 )
+
+[node name="Plant_42" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.701365, 0.564642, -5.97283 )
+
+[node name="Plant_43" parent="Scenery/BelowWater/Plant_4" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.77893, 0.742888, -4.90142 )
+
+[node name="Plant_5" parent="Scenery/BelowWater" instance=ExtResource( 6 )]
+transform = Transform( 2.40864, 1.49972, 0.974313, -1.57988, 2.55021, -0.0197333, -0.8381, -0.497256, 2.83731, 19.509, -4.88322, 26.9394 )
+
+[node name="Plant_3" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350475, 0.0135212, -0.970572 )
+
+[node name="Plant_4" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494755, -0.19088, -2.14295 )
+
+[node name="Plant_5" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491958, 0.189801, -1.67976 )
+
+[node name="Plant_6" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_7" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_8" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722314, 0.278674, -2.55341 )
+
+[node name="Plant_9" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590883, 0.227967, -3.85197 )
+
+[node name="Plant_10" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926955, -0.357626, -3.85735 )
+
+[node name="Plant_11" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80729, -0.252813, -2.83486 )
+
+[node name="Plant_12" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86411, 0.0809546, 0.188371 )
+
+[node name="Plant_13" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09485, 0.177955, -0.752446 )
+
+[node name="Plant_14" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745664, 0.312674, 1.0814 )
+
+[node name="Plant_15" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92105, -0.105747, -1.33953 )
+
+[node name="Plant_18" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.2743, 0.828394, -0.376333 )
+
+[node name="Plant_19" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.71837, 0.626777, -1.53704 )
+
+[node name="Plant_20" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.64736, 1.14353, -1.08647 )
+
+[node name="Plant_21" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_22" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_23" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.80353, 1.34479, -1.95787 )
+
+[node name="Plant_24" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.60331, 1.37753, -3.2482 )
+
+[node name="Plant_25" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.218, 0.524546, -3.23791 )
+
+[node name="Plant_26" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.39809, 0.380909, -2.17086 )
+
+[node name="Plant_27" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.46928, 0.449075, 0.869673 )
+
+[node name="Plant_28" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.14893, 0.763183, -0.092473 )
+
+[node name="Plant_29" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.58094, 0.808931, 1.72806 )
+
+[node name="Plant_30" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.35244, 0.381181, -0.664712 )
+
+[node name="Plant_16" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179657, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.30233, 0.728989, 0.589458 )
+
+[node name="Plant_17" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.96609, 0.944645, -6.94398 )
+
+[node name="Plant_31" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.64668, 0.980693, -5.83383 )
+
+[node name="Plant_32" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.94269, 1.39817, -6.52728 )
+
+[node name="Plant_33" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_34" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_35" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 3.00463, 1.72457, -7.37219 )
+
+[node name="Plant_36" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.66535, 1.94197, -8.61466 )
+
+[node name="Plant_37" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.28267, 1.0855, -8.57704 )
+
+[node name="Plant_38" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.582722, 0.78255, -7.4591 )
+
+[node name="Plant_39" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.985132, 0.410846, -4.4667 )
+
+[node name="Plant_40" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.55844, 0.866183, -5.44154 )
+
+[node name="Plant_41" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.18648, 0.651597, -3.69152 )
+
+[node name="Plant_42" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.701365, 0.564642, -5.97283 )
+
+[node name="Plant_43" parent="Scenery/BelowWater/Plant_5" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.77893, 0.742888, -4.90142 )
+
+[node name="Plant_6" parent="Scenery/BelowWater" instance=ExtResource( 6 )]
+transform = Transform( -2.97631, 0.283952, 0.246942, 0.292201, 2.98438, 0.0901423, -0.237124, 0.113483, -2.98846, 25.5989, -6.50841, -31.0949 )
+
+[node name="Plant_3" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350475, 0.0135212, -0.970572 )
+
+[node name="Plant_4" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494755, -0.19088, -2.14295 )
+
+[node name="Plant_5" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491958, 0.189801, -1.67976 )
+
+[node name="Plant_6" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_7" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_8" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722314, 0.278674, -2.55341 )
+
+[node name="Plant_9" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590883, 0.227967, -3.85197 )
+
+[node name="Plant_10" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926955, -0.357626, -3.85735 )
+
+[node name="Plant_11" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80729, -0.252813, -2.83486 )
+
+[node name="Plant_12" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86411, 0.0809546, 0.188371 )
+
+[node name="Plant_13" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09485, 0.177955, -0.752446 )
+
+[node name="Plant_14" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745664, 0.312674, 1.0814 )
+
+[node name="Plant_15" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92105, -0.105747, -1.33953 )
+
+[node name="Plant_18" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.2743, 0.828394, -0.376333 )
+
+[node name="Plant_19" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.71837, 0.626777, -1.53704 )
+
+[node name="Plant_20" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.64736, 1.14353, -1.08647 )
+
+[node name="Plant_21" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_22" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_23" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.80353, 1.34479, -1.95787 )
+
+[node name="Plant_24" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.60331, 1.37753, -3.2482 )
+
+[node name="Plant_25" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.218, 0.524546, -3.23791 )
+
+[node name="Plant_26" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.39809, 0.380909, -2.17086 )
+
+[node name="Plant_27" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.46928, 0.449075, 0.869673 )
+
+[node name="Plant_28" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.14893, 0.763183, -0.092473 )
+
+[node name="Plant_29" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.58094, 0.808931, 1.72806 )
+
+[node name="Plant_30" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.35244, 0.381181, -0.664712 )
+
+[node name="Plant_16" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179657, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.30233, 0.728989, 0.589458 )
+
+[node name="Plant_17" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.96609, 0.944645, -6.94398 )
+
+[node name="Plant_31" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.64668, 0.980693, -5.83383 )
+
+[node name="Plant_32" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.94269, 1.39817, -6.52728 )
+
+[node name="Plant_33" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_34" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_35" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 3.00463, 1.72457, -7.37219 )
+
+[node name="Plant_36" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.66535, 1.94197, -8.61466 )
+
+[node name="Plant_37" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.28267, 1.0855, -8.57704 )
+
+[node name="Plant_38" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.582722, 0.78255, -7.4591 )
+
+[node name="Plant_39" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.985132, 0.410846, -4.4667 )
+
+[node name="Plant_40" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.55844, 0.866183, -5.44154 )
+
+[node name="Plant_41" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.18648, 0.651597, -3.69152 )
+
+[node name="Plant_42" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.701365, 0.564642, -5.97283 )
+
+[node name="Plant_43" parent="Scenery/BelowWater/Plant_6" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.77893, 0.742888, -4.90142 )
+
+[node name="Plant_3" parent="Scenery/BelowWater" instance=ExtResource( 6 )]
+transform = Transform( 2.39025, 1.79988, -0.217104, -1.80461, 2.39654, 0, 0.173432, 0.130596, 2.99213, 33.668, -11.7858, 33.6137 )
+
+[node name="Plant_3" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0350475, 0.0135212, -0.970572 )
+
+[node name="Plant_4" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.494755, -0.19088, -2.14295 )
+
+[node name="Plant_5" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.491958, 0.189801, -1.67976 )
+
+[node name="Plant_6" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_7" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.165939, -0.0640206, -2.98216 )
+
+[node name="Plant_8" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722314, 0.278674, -2.55341 )
+
+[node name="Plant_9" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.590883, 0.227967, -3.85197 )
+
+[node name="Plant_10" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.926955, -0.357626, -3.85735 )
+
+[node name="Plant_11" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.80729, -0.252813, -2.83486 )
+
+[node name="Plant_12" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.86411, 0.0809546, 0.188371 )
+
+[node name="Plant_13" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.09485, 0.177955, -0.752446 )
+
+[node name="Plant_14" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.745664, 0.312674, 1.0814 )
+
+[node name="Plant_15" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.92105, -0.105747, -1.33953 )
+
+[node name="Plant_18" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.2743, 0.828394, -0.376333 )
+
+[node name="Plant_19" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.71837, 0.626777, -1.53704 )
+
+[node name="Plant_20" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.64736, 1.14353, -1.08647 )
+
+[node name="Plant_21" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_22" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.96652, 0.880569, -2.37519 )
+
+[node name="Plant_23" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.80353, 1.34479, -1.95787 )
+
+[node name="Plant_24" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.60331, 1.37753, -3.2482 )
+
+[node name="Plant_25" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.218, 0.524546, -3.23791 )
+
+[node name="Plant_26" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.39809, 0.380909, -2.17086 )
+
+[node name="Plant_27" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.46928, 0.449075, 0.869673 )
+
+[node name="Plant_28" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.14893, 0.763183, -0.092473 )
+
+[node name="Plant_29" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 2.58094, 0.808931, 1.72806 )
+
+[node name="Plant_30" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179658, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 1.35244, 0.381181, -0.664712 )
+
+[node name="Plant_16" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.981784, -0.179657, 0.0618334, 0.184396, 0.979416, -0.0821154, -0.045808, 0.0920214, 0.994703, 3.30233, 0.728989, 0.589458 )
+
+[node name="Plant_17" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.96609, 0.944645, -6.94398 )
+
+[node name="Plant_31" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.64668, 0.980693, -5.83383 )
+
+[node name="Plant_32" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.94269, 1.39817, -6.52728 )
+
+[node name="Plant_33" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_34" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.12349, 1.31895, -7.7586 )
+
+[node name="Plant_35" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 3.00463, 1.72457, -7.37219 )
+
+[node name="Plant_36" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.66535, 1.94197, -8.61466 )
+
+[node name="Plant_37" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.28267, 1.0855, -8.57704 )
+
+[node name="Plant_38" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.582722, 0.78255, -7.4591 )
+
+[node name="Plant_39" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.985132, 0.410846, -4.4667 )
+
+[node name="Plant_40" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 1.55844, 0.866183, -5.44154 )
+
+[node name="Plant_41" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.18648, 0.651597, -3.69152 )
+
+[node name="Plant_42" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196871, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 0.701365, 0.564642, -5.97283 )
+
+[node name="Plant_43" parent="Scenery/BelowWater/Plant_3" instance=ExtResource( 6 )]
+transform = Transform( 0.97239, -0.160786, 0.169133, 0.196872, 0.954354, -0.224611, -0.125299, 0.251707, 0.959658, 2.77893, 0.742888, -4.90142 )
+
+[node name="Willow_Dead_1" parent="Scenery/BelowWater" instance=ExtResource( 12 )]
+transform = Transform( 3.99896, 0.0911811, 0.00321917, -0.0912379, 3.99647, 0.141096, 0, -0.141133, 3.99751, 70.1866, -12.8425, 36.5714 )
+
+[node name="Willow_Dead_5" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 10 )]
+transform = Transform( -0.972297, 0, 0.785582, -0.32134, 1.14064, -0.397715, -0.716854, -0.511309, -0.887234, 0.589127, -0.0013957, -9.14286 )
+
+[node name="Willow_Dead_10" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( 0.845429, -0.430603, -0.813838, -0.219565, 0.978715, -0.745928, 0.894171, 0.647456, 0.586311, 3.30558, -0.680789, -6.13624 )
+
+[node name="Willow_Dead_11" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( 0.753713, -0.642161, -0.76292, -0.17911, 0.853595, -0.895431, 0.98099, 0.649235, 0.422678, 5.26194, -0.454439, -12.1957 )
+
+[node name="Willow_Dead_12" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( 0.213794, 0.887241, 0.854165, -0.18052, 0.880152, -0.86905, -1.21828, 0.0252827, 0.278668, 3.95396, -0.0665329, -18.3934 )
+
+[node name="Willow_Dead_13" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( -0.293107, -0.892901, -0.824206, -0.227389, 0.873172, -0.865082, 1.19369, -0.0529172, -0.367175, 2.27841, 0.0351505, -18.9038 )
+
+[node name="Willow_Dead_14" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( 0.235122, -0.151649, -1.21829, -0.394651, 1.16525, -0.221214, 1.16253, 0.426248, 0.171303, 4.56849, 0.282636, -16.5809 )
+
+[node name="Willow_Dead_15" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 14 )]
+transform = Transform( 0.53672, 0.647354, 0.92486, -0.0529501, 1.03737, -0.695379, -1.12767, 0.259402, 0.472845, -1.86641, -0.825665, -5.15874 )
+
+[node name="Willow_Dead_6" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 10 )]
+transform = Transform( 0.932078, 0.626983, 0.548291, -0.219565, 0.978715, -0.745928, -0.803443, 0.459902, 0.839922, 5.13515, 0.0906255, -6.52429 )
+
+[node name="Willow_Dead_7" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 10 )]
+transform = Transform( 1.07741, 0, 0.633784, 0, 1.25, 0, -0.633784, 0, 1.07741, 5.4998, 0.257104, -12.9226 )
+
+[node name="Willow_Dead_8" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 1.86265e-09, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.79419, 0.136894, -3.65943 )
+
+[node name="Willow_Dead_9" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_3" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 12 )]
+transform = Transform( 0.432432, 0, -0.901667, 0, 1, 0, 0.901667, 0, 0.432432, 2.51783, 0, -6.83384 )
+
+[node name="Willow_Dead_4" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 3.07512, 0, -3.80676 )
+
+[node name="Willow_Dead_16" parent="Scenery/BelowWater/Willow_Dead_1" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 2.72988, -0.559776, -1.53809 )
+
+[node name="Willow_Dead_2" parent="Scenery/BelowWater" instance=ExtResource( 12 )]
+transform = Transform( 4, 0, 0, 0, 3.99866, 0.103591, 0, -0.103591, 3.99866, 93.5631, -14.9809, 30.4744 )
+
+[node name="Willow_Dead_5" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 10 )]
+transform = Transform( -0.972297, 0, 0.785582, -0.32134, 1.14064, -0.397715, -0.716854, -0.511309, -0.887234, 0.589127, -0.0013957, -9.14286 )
+
+[node name="Willow_Dead_10" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 0.845429, -0.430603, -0.813838, -0.219565, 0.978715, -0.745928, 0.894171, 0.647456, 0.586311, 3.30558, -0.680789, -6.13624 )
+
+[node name="Willow_Dead_11" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 0.269102, -0.856219, -0.870042, -0.17911, 0.853595, -0.895431, 1.20748, 0.317436, 0.0610771, 5.26194, -0.244442, -12.1957 )
+
+[node name="Willow_Dead_12" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 0.967698, 0.660333, 0.435915, -0.17911, 0.853595, -0.895431, -0.770701, 0.630744, 0.755435, 3.94599, 0.282636, -18.3811 )
+
+[node name="Willow_Dead_13" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 1.0316, -0.396322, -0.584152, -0.17911, 0.853595, -0.895431, 0.682806, 0.822682, 0.647665, 2.27276, 0.282636, -18.8951 )
+
+[node name="Willow_Dead_14" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 0.722404, -0.662314, -0.775869, -0.17911, 0.853595, -0.895431, 1.00427, 0.628663, 0.39841, 4.56849, 0.282636, -16.5809 )
+
+[node name="Willow_Dead_15" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 14 )]
+transform = Transform( 0.53672, 0.647354, 0.92486, -0.0529501, 1.03737, -0.695379, -1.12767, 0.259402, 0.472845, -1.5732, -0.283762, -5.13961 )
+
+[node name="Willow_Dead_6" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 10 )]
+transform = Transform( 0.932078, 0.626983, 0.548291, -0.219565, 0.978715, -0.745928, -0.803443, 0.459902, 0.839922, 5.13515, 0.0906255, -6.52429 )
+
+[node name="Willow_Dead_7" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 10 )]
+transform = Transform( 1.07741, 0, 0.633784, 0, 1.25, 0, -0.633784, 0, 1.07741, 5.4998, 0.257104, -12.9226 )
+
+[node name="Willow_Dead_8" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_9" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 10 )]
+transform = Transform( 1.20873, 0, 0.318526, 0, 1.25, 0, -0.318526, 0, 1.20873, 5.82097, 0.257104, -8.42512 )
+
+[node name="Willow_Dead_3" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 12 )]
+transform = Transform( 0.432432, 0, -0.901667, 0, 1, 0, 0.901667, 0, 0.432432, 2.51783, 0, -6.83384 )
+
+[node name="Willow_Dead_4" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 3.07512, 0, -3.80676 )
+
+[node name="Willow_Dead_16" parent="Scenery/BelowWater/Willow_Dead_2" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 2.72988, -0.559776, -1.53809 )
+
+[node name="Willow_Dead_3" parent="Scenery/BelowWater" instance=ExtResource( 12 )]
+transform = Transform( 1.636, 0, -3.65014, 0, 4, 0, 3.65014, 0, 1.636, 43.7061, -17.9156, 56.2822 )
+
+[node name="Willow_Dead_5" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 10 )]
+transform = Transform( -0.972297, 0, 0.785582, -0.32134, 1.14064, -0.397715, -0.716854, -0.511309, -0.887234, 0.589127, -0.0013957, -9.14286 )
+
+[node name="Willow_Dead_10" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 0.845429, -0.430603, -0.813838, -0.219565, 0.978715, -0.745928, 0.894171, 0.647456, 0.586311, 3.30558, -0.680789, -6.13624 )
+
+[node name="Willow_Dead_11" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 0.269102, -0.856219, -0.870042, -0.17911, 0.853595, -0.895431, 1.20748, 0.317436, 0.0610771, 5.26194, -0.244442, -12.1957 )
+
+[node name="Willow_Dead_12" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 0.967698, 0.660333, 0.435915, -0.17911, 0.853595, -0.895431, -0.770701, 0.630744, 0.755435, 3.94599, 0.282636, -18.3811 )
+
+[node name="Willow_Dead_13" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 1.0316, -0.396322, -0.584152, -0.17911, 0.853595, -0.895431, 0.682806, 0.822682, 0.647665, 2.27276, 0.282636, -18.8951 )
+
+[node name="Willow_Dead_14" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 0.722404, -0.662314, -0.775869, -0.17911, 0.853595, -0.895431, 1.00427, 0.628663, 0.39841, 4.56849, 0.282636, -16.5809 )
+
+[node name="Willow_Dead_15" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 14 )]
+transform = Transform( 0.53672, 0.647354, 0.92486, -0.0529501, 1.03737, -0.695379, -1.12767, 0.259402, 0.472845, -1.5732, -0.283762, -5.13961 )
+
+[node name="Willow_Dead_6" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 10 )]
+transform = Transform( 0.932078, 0.626983, 0.548291, -0.219565, 0.978715, -0.745928, -0.803443, 0.459902, 0.839922, 5.13515, 0.0906255, -6.52429 )
+
+[node name="Willow_Dead_7" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 10 )]
+transform = Transform( 1.07741, 0, 0.633784, 0, 1.25, 0, -0.633784, 0, 1.07741, 5.4998, 0.257104, -12.9226 )
+
+[node name="Willow_Dead_8" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_9" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_3" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 12 )]
+transform = Transform( 0.432432, 0, -0.901667, 0, 1, 0, 0.901667, 0, 0.432432, 2.51783, 0, -6.83384 )
+
+[node name="Willow_Dead_4" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 3.07512, 0, -3.80676 )
+
+[node name="Willow_Dead_16" parent="Scenery/BelowWater/Willow_Dead_3" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 2.72988, -0.559776, -1.53809 )
+
+[node name="Willow_Dead_4" parent="Scenery/BelowWater" instance=ExtResource( 12 )]
+transform = Transform( 0.238179, 0.176012, -3.98902, -0.0104908, 3.99613, 0.175699, 3.99289, 0, 0.23841, 35.0959, -13.8706, -70.1515 )
+
+[node name="Willow_Dead_5" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 10 )]
+transform = Transform( -0.972297, 0, 0.785582, -0.32134, 1.14064, -0.397715, -0.716854, -0.511309, -0.887234, 0.589127, -0.0013957, -9.14286 )
+
+[node name="Willow_Dead_10" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 0.845429, -0.430603, -0.813838, -0.219565, 0.978715, -0.745928, 0.894171, 0.647456, 0.586311, 3.30558, -0.680789, -6.13624 )
+
+[node name="Willow_Dead_11" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 0.269102, -0.856219, -0.870042, -0.17911, 0.853595, -0.895431, 1.20748, 0.317436, 0.0610771, 5.26194, -0.244442, -12.1957 )
+
+[node name="Willow_Dead_12" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 0.967698, 0.660333, 0.435915, -0.17911, 0.853595, -0.895431, -0.770701, 0.630744, 0.755435, 3.94599, 0.282636, -18.3811 )
+
+[node name="Willow_Dead_13" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 1.0316, -0.396322, -0.584152, -0.17911, 0.853595, -0.895431, 0.682806, 0.822682, 0.647665, 2.27276, 0.282636, -18.8951 )
+
+[node name="Willow_Dead_14" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 0.722404, -0.662314, -0.775869, -0.17911, 0.853595, -0.895431, 1.00427, 0.628663, 0.39841, 4.56849, 0.282636, -16.5809 )
+
+[node name="Willow_Dead_15" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 14 )]
+transform = Transform( 0.53672, 0.647354, 0.92486, -0.0529501, 1.03737, -0.695379, -1.12767, 0.259402, 0.472845, -1.5732, -0.283762, -5.13961 )
+
+[node name="Willow_Dead_6" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 10 )]
+transform = Transform( 0.932078, 0.626983, 0.548291, -0.219565, 0.978715, -0.745928, -0.803443, 0.459902, 0.839922, 5.13515, 0.0906255, -6.52429 )
+
+[node name="Willow_Dead_7" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 10 )]
+transform = Transform( 1.07741, 0, 0.633784, 0, 1.25, 0, -0.633784, 0, 1.07741, 5.4998, 0.257104, -12.9226 )
+
+[node name="Willow_Dead_8" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_9" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 10 )]
+transform = Transform( 0.934197, 0, 0.830527, 0, 1.25, 0, -0.830527, 0, 0.934197, 4.06532, 0.257104, -7.53563 )
+
+[node name="Willow_Dead_3" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 12 )]
+transform = Transform( 0.432432, 0, -0.901667, 0, 1, 0, 0.901667, 0, 0.432432, 2.51783, 0, -6.83384 )
+
+[node name="Willow_Dead_4" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 3.07512, 0, -3.80676 )
+
+[node name="Willow_Dead_16" parent="Scenery/BelowWater/Willow_Dead_4" instance=ExtResource( 12 )]
+transform = Transform( -0.327272, -0.37616, -0.866832, -0.132865, 0.926555, -0.351913, 0.935543, 0, -0.353214, 2.72988, -0.559776, -1.53809 )

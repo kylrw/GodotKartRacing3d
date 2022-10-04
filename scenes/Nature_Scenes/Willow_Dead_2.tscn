@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/Nature_Models/Snow_001.material" type="Material" id=1]
+[ext_resource path="res://assets/Nature_Models/Willow_Dead_2.fbx" type="PackedScene" id=2]
+
+[node name="Willow_Dead_2" instance=ExtResource( 2 )]
+
+[node name="Willow_Dead_3" parent="." index="0"]
+material/0 = ExtResource( 1 )
